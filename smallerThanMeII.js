@@ -1,19 +1,23 @@
 function smaller(arr) {
   for(var i = 0, arrLength = arr.length; i < arrLength; i++) {
-    arr[i] = getCount(arr[i],arr,i,arrLength);
+    arr[i] = getCount(arr[i],arr,(i+1),arrLength);
   }
   return arr;
 }
 
+/**
+this is supposedly the fastest way to loop through an array
+for ( var i = array.length; i--; ) {
+    sum += array[i];
+}
+**/
+
 function getCount(num, array, initialIndex, endingIndex) {
   var count = 0;
   if(initialIndex == endingIndex) return count;
-  var copyArr = array.slice(initialIndex,endingIndex).sort();
-  for(var i = 0, copyArrLength = copyArr.length; i < copyArrLength; i++) {
-    if(num > copyArr[i]) {
+  for(var i = initialIndex; i <= endingIndex; i++) {
+    if(num > array[i]) {
       count++;
-    }else{
-      break;
     }
   }
   return count;
